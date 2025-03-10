@@ -202,7 +202,7 @@ with shared.gradio_root:
             with gr.Row(elem_classes='advanced_check_row'):
                 input_image_checkbox = gr.Checkbox(label='Input Image', value=modules.config.default_image_prompt_checkbox, container=False, elem_classes='min_check')
                 enhance_checkbox = gr.Checkbox(label='Enhance', value=modules.config.default_enhance_checkbox, container=False, elem_classes='min_check')
-                advanced_checkbox = gr.Checkbox(label='Advanced', value=modules.config.default_advanced_checkbox, container=False, elem_classes='min_check')
+                advanced_checkbox = gr.Checkbox(label='Advanced', value=True, container=False, elem_classes='min_check')
             with gr.Row(visible=modules.config.default_image_prompt_checkbox) as image_input_panel:
                 with gr.Tabs(selected=modules.config.default_selected_image_input_tab_id):
                     with gr.Tab(label='Upscale or Variation', id='uov_tab') as uov_tab:
@@ -291,7 +291,7 @@ with shared.gradio_root:
                                                                             outputs=inpaint_mask_dino_prompt_text,
                                                                             show_progress=False, queue=False)
 
-                                with gr.Accordion("Advanced options", visible=False, open=False) as inpaint_mask_advanced_options:
+                                with gr.Accordion("Advanced options", visible=False, open=True) as inpaint_mask_advanced_options:
                                     inpaint_mask_sam_model = gr.Dropdown(label='SAM model', choices=flags.inpaint_mask_sam_model, value=modules.config.default_inpaint_mask_sam_model)
                                     inpaint_mask_box_threshold = gr.Slider(label="Box Threshold", minimum=0.0, maximum=1.0, value=0.3, step=0.05)
                                     inpaint_mask_text_threshold = gr.Slider(label="Text Threshold", minimum=0.0, maximum=1.0, value=0.25, step=0.05)
@@ -724,7 +724,7 @@ with shared.gradio_root:
 
                         generate_image_grid = gr.Checkbox(label='Generate Image Grid for Each Batch',
                                                           info='(Experimental) This may cause performance problems on some computers and certain internet conditions.',
-                                                          value=False)
+                                                          value=True)
 
                         overwrite_step = gr.Slider(label='Forced Overwrite of Sampling Step',
                                                    minimum=-1, maximum=200, step=1,
@@ -775,7 +775,7 @@ with shared.gradio_root:
                                                                          value=modules.config.default_save_only_final_enhanced_image)
 
                         if not args_manager.args.disable_metadata:
-                            save_metadata_to_images = gr.Checkbox(label='Save Metadata to Images', value=modules.config.default_save_metadata_to_images,
+                            save_metadata_to_images = gr.Checkbox(label='Save Metadata to Images', value=True,
                                                                   info='Adds parameters to generated images allowing manual regeneration.')
                             metadata_scheme = gr.Radio(label='Metadata Scheme', choices=flags.metadata_scheme, value=modules.config.default_metadata_scheme,
                                                        info='Image Prompt parameters are not included. Use png and a1111 for compatibility with Civitai.',

@@ -291,7 +291,7 @@ with shared.gradio_root:
                                                                             outputs=inpaint_mask_dino_prompt_text,
                                                                             show_progress=False, queue=False)
 
-                                with gr.Accordion("Advanced options", visible=False, open=True) as inpaint_mask_advanced_options:
+                                with gr.Accordion("Advanced options", visible=False, open=False) as inpaint_mask_advanced_options:
                                     inpaint_mask_sam_model = gr.Dropdown(label='SAM model', choices=flags.inpaint_mask_sam_model, value=modules.config.default_inpaint_mask_sam_model)
                                     inpaint_mask_box_threshold = gr.Slider(label="Box Threshold", minimum=0.0, maximum=1.0, value=0.3, step=0.05)
                                     inpaint_mask_text_threshold = gr.Slider(label="Text Threshold", minimum=0.0, maximum=1.0, value=0.25, step=0.05)
